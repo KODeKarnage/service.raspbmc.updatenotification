@@ -68,7 +68,8 @@ class Main():
     def check_ver(self):
         for x in range(2):
             self.XV = urllib2.urlopen(self.ex_version_sources[x]).read()
-            self.NV = os.popen(self.in_version_sources[x]).read()
+            with open(self.in_version_sources[x],'r') as f:
+                self.NV = f.read()
             if self.XV != self.NV:
                 __addon__.setSetting(id='Update_Available',value='true')
                 break
@@ -87,10 +88,5 @@ class Main():
         self.window.setProperty('RUA_notification','false')
 
 if __name__ == "__main__":
-	Main()
-
-
-
-          
-
-
+    srv = Main()
+    del srv
