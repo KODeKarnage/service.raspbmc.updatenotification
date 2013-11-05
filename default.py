@@ -36,18 +36,16 @@ def log(vname, message):
 
 
 class Main():
-    def __init__(self):
 
+    def __init__(self):
         self.window = xbmcgui.Window(10000)
         self.window.setProperty('RUA_notification','false')
         self.ex_version_sources =   [   "http://svn.stmlabs.com/svn/raspbmc/release/update-system/kernel/kver", 
                                         "http://svn.stmlabs.com/svn/raspbmc/release/update-system/xbmc-svcmgmt/svcver",
                                         "http://svn.stmlabs.com/svn/raspbmc/release/update-system/xbmc/xbmcver" ]
-
         self.in_version_sources =   [   "/scripts/upd_hist/kver",
                                         "/scripts/upd_hist/svcver",
                                         "/scripts/upd_hist/xbmcver" ] 
-                                    
         self.check_ver()
         self.daemon()
 
@@ -63,7 +61,7 @@ class Main():
                 #removes the notification if a check reveals there is no notification (should be needed, but just in case)
                 self.takedown_notification()
             else:
-                xbmc.sleep(150)
+                xbmc.sleep(10000)
                 self.check_ver()
 
 
@@ -86,6 +84,7 @@ class Main():
 
     def takedown_notification(self):
         self.window.removeControl('RUA_image')
+        self.window.setProperty('RUA_notification','false')
 
 if __name__ == "__main__":
 	Main()
