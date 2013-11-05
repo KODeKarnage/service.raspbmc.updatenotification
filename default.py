@@ -23,6 +23,7 @@ import xbmcaddon
 import xbmc
 import os
 import urllib2
+import random
 
 __script_id__  = "service.raspbmc.updatenotification"
 __addon__      = xbmcaddon.Addon(id=__script_id__)
@@ -38,7 +39,7 @@ def log(label, message):
 class Main():
 
     def __init__(self):
-        xbmc.sleep(10000)
+        xbmc.sleep(30000)
         self.window = xbmcgui.Window(10000)
         self.window.setProperty('RUA_notification','false')
         self.ex_version_sources =   [   "http://svn.stmlabs.com/svn/raspbmc/release/update-system/kernel/kver", 
@@ -55,8 +56,8 @@ class Main():
         while not xbmc.abortRequested:
             available = __addon__.getSetting('Update_Available')
             notified = self.window.getProperty('RUA_notification')
-            log('available',available)
-            log('notified',notified)
+            #log('available',available)
+            #log('notified',notified)
             if available == 'true' and notified == 'false':
                 #posts notification if update is available and notification is not currently displayed
                 self.post_notification()
@@ -64,7 +65,9 @@ class Main():
                 #removes the notification if a check reveals there is no notification (should be needed, but just in case)
                 self.takedown_notification()
             else:
-                xbmc.sleep(10000)
+                #randy = float(random.randint(500,1000))/1000.0
+                #xbmc.sleep(86400 * randy)
+                xbmc.sleep(30000) #this is for testing only
                 self.check_ver()
 
 
