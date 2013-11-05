@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="wirelesswidget">
+        <setting label="Update frequency" type="slider" id="freq" subsetting="true" default="5" range="1,1,30" option="int" />
+        <setting label="Position X-axis" type="slider" id="xax" subsetting="true" default="10" range="1,1,720" option="int" />
+        <setting label="Position Y-axis" type="slider" id="yax" subsetting="true" default="55" range="1,1,1280" option="int" />
+        <setting label="Update Available" type="bool" id="Update_Available" default="false" />
+</settings>
