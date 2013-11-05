@@ -30,14 +30,15 @@ __scriptPath__ = __addon__.getAddonInfo('path')
 __image_file__ = os.path.join(__scriptPath__,'resources','media','RaspBMC_UA.png')
 
 
-def log(vname, message):
+def log(label, message):
 	#if settings['debug']:
-	xbmc.log(msg=vname + " -- " + str(message))
+	xbmc.log(msg='RaspBMC_Notify: ' + str(label) + ' - ' + str(message))
 
 
 class Main():
 
     def __init__(self):
+        xbmc.sleep(10000)
         self.window = xbmcgui.Window(10000)
         self.window.setProperty('RUA_notification','false')
         self.ex_version_sources =   [   "http://svn.stmlabs.com/svn/raspbmc/release/update-system/kernel/kver", 
@@ -54,6 +55,8 @@ class Main():
         while not xbmc.abortRequested:
             available = __addon__.getSetting('Update_Available')
             notified = self.window.getProperty('RUA_notification')
+            log('available',available)
+            log('notified',notified)
             if available == 'true' and notified == 'false':
                 #posts notification if update is available and notification is not currently displayed
                 self.post_notification()
@@ -68,8 +71,10 @@ class Main():
     def check_ver(self):
         for x in range(2):
             self.XV = urllib2.urlopen(self.ex_version_sources[x]).read()
+            log('url_read',self.XV)
             with open(self.in_version_sources[x],'r') as f:
                 self.NV = f.read()
+            log('local_read',self.NV)
             if self.XV != self.NV:
                 __addon__.setSetting(id='Update_Available',value='true')
                 break
