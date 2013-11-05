@@ -47,7 +47,7 @@ class Main():
                                         "/scripts/upd_hist/svcver",
                                         "/scripts/upd_hist/xbmcver" ] 
         self.check_ver()
-        self.daemon()
+        self._daemon()
 
 
     def _daemon(self):
