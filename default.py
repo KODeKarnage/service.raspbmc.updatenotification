@@ -86,7 +86,7 @@ class Main():
 
 
     def check_ver(self):
-        for x in range(2):
+        for x in range(3):
             self.XV = urllib2.urlopen(self.ex_version_sources[x]).read()
             log('url_read',self.XV)
             with open(self.in_version_sources[x],'r') as f:
